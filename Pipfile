@@ -6,7 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
+django = {extras = ["argon2"], version = "*"}
+django-bootstrap4 = "*"
+bcrypt = "*"
+misaka = "*"
+django-braces = "*"
+bootstrap4 = "*"
 
 [requires]
 python_version = "3.8"
