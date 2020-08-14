@@ -47,9 +47,10 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
 
     def get(self, request, *args, **kwargs):
         try:
-            GroupMember.objects.delete(user=self.request.user, group__slug=self.kwargs.get('slug'))
+            membership = GroupMember.objects.filter(user=self.request.user, group__slug=self.kwargs.get('slug'))
         except:
             messages.warning(self.request, 'You are not in this group')
         else:
+            membership.delete()
             messages.success(self.request, 'You are leaved this group')
         return super().get(request, *args, **kwargs)

@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'posts/post_base.html' %}
+{% block post_content %}
+    <h1>Are you sure want to delete this post</h1><br>
+    <div class="container">
+        {% include 'posts/_posts.html' with post=object hide_delete=True %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn-lg btn btn-danger" VALUE="Delete">
+        <a href="{% url 'posts:single' username=user.username pk=object.pk %}" class="btn btn-light btn-lg">Cancel</a>
+    </form>
+{% endblock %}
